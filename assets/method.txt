@@ -1,0 +1,17 @@
+
+build machine: Ubuntu 16.04 64 bit (xenial)
+
+package list: see dpkg.list
+
+gcc version: see gcc.ver
+
+shim upstream source: https://github.com/rhboot/shim/tree/13
+
+shim patch: ./abort_abort_abort.patch  (same patch used by redhat and ubuntu)
+
+build command: make EFI_PATH=/usr/lib VENDOR_CERT_FILE=assets/thinpro-secureboot.cer
+
+build output: see build.log
+
+binaries to be signed: assets/shimx64.efi
+
