@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 SUSE LINUX GmbH <glin@suse.com>
+ * Copyright 2013 Red Hat, Inc <pjones@redhat.com>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -25,17 +25,28 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Significant portions of this code are derived from Tianocore
- * (http://tianocore.sf.net) and are Copyright 2009-2012 Intel
- * Corporation.
  */
+#ifndef SHIM_REPLACEMENTS_H
+#define SHIM_REPLACEMENTS_H
 
-#ifndef _HTTPBOOT_H_
-#define _HTTPBOOT_H_
+extern EFI_SYSTEM_TABLE *get_active_systab(void);
 
-BOOLEAN find_httpboot (EFI_DEVICE_PATH *devpath);
+typedef enum {
+	VERIFIED_BY_NOTHING,
+	VERIFIED_BY_CERT,
+	VERIFIED_BY_HASH
+} verification_method_t;
 
-EFI_STATUS httpboot_fetch_buffer (EFI_HANDLE image, VOID **buffer, UINT64 *buf_size);
+extern verification_method_t verification_method;
+extern int loader_is_participating;
 
-#endif
+extern void hook_system_services(EFI_SYSTEM_TABLE *local_systab);
+extern void unhook_system_services(void);
+
+extern void hook_exit(EFI_SYSTEM_TABLE *local_systab);
+extern void unhook_exit(void);
+
+extern EFI_STATUS install_shim_protocols(void);
+extern void uninstall_shim_protocols(void);
+
+#endif /* SHIM_REPLACEMENTS_H */

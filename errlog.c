@@ -7,10 +7,6 @@
 
 #include "shim.h"
 
-#ifdef LogError
-#undef LogError
-#endif
-
 static CHAR16 **errs = NULL;
 static UINTN nerrs = 0;
 
@@ -51,16 +47,16 @@ VLogError(const char *file, int line, const char *func, CHAR16 *fmt, va_list arg
 }
 
 EFI_STATUS
-LogError(const char *file, int line, const char *func, CHAR16 *fmt, ...)
+LogError_(const char *file, int line, const char *func, CHAR16 *fmt, ...)
 {
 	va_list args;
-	EFI_STATUS status;
+	EFI_STATUS efi_status;
 
 	va_start(args, fmt);
-	status = VLogError(file, line, func, fmt, args);
+	efi_status = VLogError(file, line, func, fmt, args);
 	va_end(args);
 
-	return status;
+	return efi_status;
 }
 
 VOID
@@ -72,7 +68,7 @@ PrintErrors(VOID)
 		return;
 
 	for (i = 0; i < nerrs; i++)
-		Print(L"%s", errs[i]);
+		console_print(L"%s", errs[i]);
 }
 
 VOID

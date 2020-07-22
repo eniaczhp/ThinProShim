@@ -1,13 +1,13 @@
 
-build machine: Ubuntu 16.04 64 bit (xenial)
+build machine: Ubuntu 18.04 64 bit (bionic)
 
 package list: see dpkg.list
 
 gcc version: see gcc.ver
 
-shim upstream source: https://github.com/rhboot/shim/tree/13
+shim upstream source: https://github.com/rhboot/shim/tree/15
 
-shim patch: ./abort_abort_abort.patch  (same patch used by redhat and ubuntu)
+shim patch: none
 
 build command: make EFI_PATH=/usr/lib VENDOR_CERT_FILE=assets/thinpro-secureboot.cer
 

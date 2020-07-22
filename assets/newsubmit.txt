@@ -10,23 +10,23 @@ Microsoft UEFI CA New Submitter Questions
 
 3.Have you tested the products in this submission, following pre-submission testing instructions?
 
-    Yes.  I've done full 
+    Yes.  I've done full test on it
 
 4.Please provide a description of the purpose and functions of your submitted modules.
 
-    We will use this bootloader in ThinPro for PC (an Ubuntu based Linux variant).  This is not our first linux release.  The actual version is 7.1.  Previous ThinPro are only released with HP hardwares support.  The next ThinPro release is targeted for not just HP's machines, but also general PC from other vendors.  We need our bootloader to be signed by MS UEFI key for it to be bootable there.
+    We will use this bootloader in ThinPro for PC (an Ubuntu based Linux variant).  This is not our first linux release.  The actual version is 7.1/7.2.  Previous ThinPro are only released with HP hardwares support.  The next ThinPro release is targeted for not just HP's machines, but also general PC from other vendors.  We need our bootloader to be signed by MS UEFI key for it to be bootable there.
 
 5.Is this a version update from any previously signed UEFI submissions? If so, then:
 
-    No
+    Yes, https://github.com/rhboot/shim-review/issues/34 the old signed shim will be blacklisted due to the grub vulnerability
 
 a.What are the submission IDs of the previous submissions?
 
-    N/A
+    HP Inc - ThinPro - shim - 20181005 #34 (https://github.com/rhboot/shim-review/issues/34)
 
 b.Are any security fixes introduced in this newer version? If so, please provide a brief explanation of the fixes made and impact expected.
 
-    N/A
+    N/A, the actual fix is in the grub package
 
 6.Does your submission include license terms that would mandate the transmission of keys used for signing (e.g. GPL family of licenses GPLv2, GPLv3, LGPLv3, etc.)?
 
@@ -50,11 +50,11 @@ b.Are any security fixes introduced in this newer version? If so, please provide
 
 11.Do any of the products in this submission use GRUB, or other loaders? If so, please describe where the loader’s source code originated as well as which Secure Boot protections have been enabled.
 
-    We use grub2 from Ubuntu Xenial repo.
+    We use grub2 from Ubuntu.
 
 12.Do any of the products in this submission use OpenSSL? If so, which version?
 
-    Yes.  It has an embedded OpenSSL library from upstream.  The version can be found in Cryptlib/OpenSSL/crypto/cversion.c: 1.0.2k
+    Yes.  It has an embedded OpenSSL library from upstream.  The version can be found in ../Cryptlib/Include/openssl/opensslv.h:# define OPENSSL_VERSION_NUMBER  0x100020bfL
 
 13.Do any of the products in this submission consist of EfiByteCode? If so, what platforms are supported?
 
@@ -70,7 +70,7 @@ b.Are any security fixes introduced in this newer version? If so, please provide
 
 a.What are the origin and full version number of your SHIM?
 
-    https://github.com/rhboot/shim/tree/13
+    https://github.com/rhboot/shim/tree/15
 
 b.How do you manage and protect the keys used in your SHIM?
 
@@ -82,7 +82,7 @@ c.Do you use EV certificates as embedded certificates in the SHIM?
 
 d.If your SHIM launches GRUB or other loaders, what is that loader’s source code origin and full version number?
 
-    We use grub2 from Ubuntu Xenial repo.
+    We use grub2 from Ubuntu
 
 e.If your SHIM launches any other components, please provide further details on what is launched and how the component prevents execution of unauthenticated code.
 
