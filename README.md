@@ -56,7 +56,7 @@ What upstream shim tag is this starting from:
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-    https://github.com/vathpela/shim-review/
+    https://github.com/eniaczhp/ThinProShim/releases/tag/HPI-shim-x64-20210603
     tag: HPI-shim-x64-20210603
     please build the shim with command:
   $ docker build -t hpishim -f hpishim.docker .
